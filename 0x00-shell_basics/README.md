@@ -8,6 +8,9 @@ list all files
 ## 2-bring_me_home
 change to home directory
 
-## ./3-listfiles
+## 3-listfiles
 list contents in a long format
+
+## 4-listmorefiles
+list all files, including hidden ones, in long format
 
