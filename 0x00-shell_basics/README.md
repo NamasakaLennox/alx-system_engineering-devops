@@ -14,3 +14,10 @@ list contents in a long format
 ## 4-listmorefiles
 list all files, including hidden ones, in long format
 
+## 5-listfilesdigitonly
+Display current directory contents.
+
+Long format
+with user and group IDs displayed numerically
+And hidden files (starting with .)
+
