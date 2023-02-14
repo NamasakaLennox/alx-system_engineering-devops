@@ -1,3 +1,2 @@
 #!/bin/bash
 ls -l -R $PATH | grep -c ^d
-
