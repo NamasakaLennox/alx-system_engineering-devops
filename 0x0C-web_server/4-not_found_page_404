@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Install nginx
+sudo apt-get update -y
+sudo apt-get install nginx -y
+
+# change owner to current user to write
+sudo chown -R "$USER":"$USER" /var/www/html/
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-available/
+
+# configure output
+echo "Hello World!" | sudo tee /var/www/html/index.html
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
+
+# update config file to redirect
+sed -i "/server_name _;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=dQw4w9WgXcQ permanent;" /etc/nginx/sites-available/default
+sed -i "/server_name _;/a error_page 404 /custom_404.html;" /etc/nginx/sites-available/default
+
+# start engine or restart
+sudo service nginx restart
