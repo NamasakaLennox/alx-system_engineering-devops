@@ -1,1 +1,3 @@
-service apache2 status
+#!/usr/bin/env bash
+
+sudo docker exec b63ad858c757 service apache2 start
