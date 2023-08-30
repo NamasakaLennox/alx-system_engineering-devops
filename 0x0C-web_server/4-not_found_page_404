@@ -12,8 +12,8 @@ echo "Hello World!" | sudo tee /var/www/html/index.html
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
 
 # update config file to redirect
-sed -i "/server_name _;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=dQw4w9WgXcQ permanent;" /etc/nginx/sites-available/default
-sed -i "/server_name _;/a error_page 404 /custom_404.html;" /etc/nginx/sites-available/default
+sed -i "/server_name _;/ a\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=dQw4w9WgXcQ permanent;" /etc/nginx/sites-available/default
+sed -i "/server_name _;/ a\\\terror_page 404 /custom_404.html;" /etc/nginx/sites-available/default
 
 # start engine or restart
 sudo service nginx restart
