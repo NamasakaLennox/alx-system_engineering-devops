@@ -1,22 +1,14 @@
 #!/usr/bin/env bash
-# configures and installs HAProxy on a clean ubuntu machine
-
-# install HAProxy
+# Installs, configures, and starts the load balancer
+# Update package lists
 sudo apt-get update
-sudo apt-get install --no-install-recommends software-properties-common -y
-sudo add-apt-repository ppa:vbernat/haproxy-2.8 -y
-sudo apt-get install haproxy=2.8.\* -y
 
-# configure HAProxy
-sudo chown -R "$USER":"$USER" /etc/haproxy
-sudo chown -R "$USER":"$USER" /etc/haproxy/haproxy.cfg
-sudo chown -R "$USER":"$USER" /etc/default/haproxy
+# Install HAProxy
+sudo apt-get install haproxy -y
 
-# configure it to be started by the init script
-echo "ENABLED=1" | sudo tee /etc/default/haproxy
-
-# add config
-echo "global
+# Configure HAProxy
+sudo tee /etc/haproxy/haproxy.cfg > /dev/null <<EOT
+global
     daemon
     maxconn 256
 
@@ -26,19 +18,16 @@ defaults
     timeout client 50000ms
     timeout server 50000ms
 
-
 frontend http_front
     bind *:80
-    mode http
     default_backend http_back
 
 backend http_back
     balance roundrobin
-    server web-01 54.227.128.86:80 check
-    server web-02 54.237.40.109:80 check
-" | sudo tee /etc/haproxy/haproxy.cfg
+    server web-01 100.26.225.174:80 check
+    server web-02 18.209.224.170:80 check
+EOT
 
-# start process
 # Test HAProxy configuration
 sudo haproxy -c -f /etc/haproxy/haproxy.cfg
 
