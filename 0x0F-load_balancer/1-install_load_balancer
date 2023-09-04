@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# configures and installs HAProxy on a clean ubuntu machine
+
+# install HAProxy
+sudo apt-get update
+sudo apt-get install --no-install-recommends software-properties-common -y
+sudo add-apt-repository ppa:vbernat/haproxy-2.8 -y
+sudo apt-get install haproxy=2.8.\* -y
+
+# configure HAProxy
+sudo chown -R "$USER":"$USER" /etc/haproxy
+sudo chown -R "$USER":"$USER" /etc/haproxy/haproxy.cfg
+sudo chown -R "$USER":"$USER" /etc/default/haproxy
+
+# configure it to be started by the init script
+echo "ENABLED=1" | sudo tee /etc/default/haproxy
+
+# add config
+echo "
+frontend http_front
+    bind *:80
+    mode http
+    default_backend http_back
+
+backend http_back
+    balance roundrobin
+    server web-01 54.227.128.86:80 check
+    server web-02 54.237.40.109:80 check
+" | sudo tee /etc/haproxy/haproxy.cfg
+
+# start process
+sudo service haproxy start
+sudo service haproxy restart
