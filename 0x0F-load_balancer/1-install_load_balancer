@@ -39,5 +39,11 @@ backend http_back
 " | sudo tee /etc/haproxy/haproxy.cfg
 
 # start process
-sudo service haproxy start
-sudo service haproxy restart
+# Test HAProxy configuration
+sudo haproxy -c -f /etc/haproxy/haproxy.cfg
+
+# Start HAProxy
+sudo systemctl start haproxy
+
+# Enable HAProxy to start on boot
+sudo systemctl enable haproxy
