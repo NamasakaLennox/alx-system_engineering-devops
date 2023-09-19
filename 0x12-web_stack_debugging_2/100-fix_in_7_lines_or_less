@@ -1,4 +1,4 @@
-#00000!/usr/bin/env bash
+#!/usr/bin/env bash
 # runs nginx as non root user
 sudo chown -R nginx:nginx /var/www/html
 chmod 750 /etc/nginx/nginx.conf
