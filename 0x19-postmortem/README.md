@@ -1,12 +1,12 @@
 # Issue Summary
 
-## Duration of Outage
+### Duration of Outage
 The outage lasted for approximately 2 hours, from 10:00 AM to 12:00 PM (UTC).
 
-## Impact
+### Impact
 The Nginx web server was completely down during this period, resulting in a 100% outage for all web services hosted on the server. Users attempting to access websites hosted on the server experienced connection errors and were unable to load any content.
 
-## Root Cause
+### Root Cause
 The root cause of the issue was a combination of the Nginx server not being started and a typographical error in the server configuration file.
 
 # Timeline
@@ -35,7 +35,7 @@ The root cause of the issue was a combination of the Nginx server not being star
 
 During the investigation, the team briefly considered other potential issues, such as network problems and hardware failures. However, these paths were quickly ruled out as there were no corresponding alerts or indications of issues in these areas.
 
-## Escalation
+### Escalation
 
 The incident was escalated to the system administrators and the DevOps team. They were involved in investigating and resolving the issue.
 
@@ -43,7 +43,7 @@ The incident was escalated to the system administrators and the DevOps team. The
 
 The root cause of the issue was the typographical error in the Nginx configuration file, specifically, a misspelled file path. This error prevented Nginx from starting correctly.
 
-## Resolution:
+### Resolution:
 
 The Nginx configuration file was edited to correct the typographical error.
 The corrected configuration was tested for syntax errors using the nginx -t command, which confirmed the configuration was error-free.
@@ -61,7 +61,7 @@ Testing Staging Environments: Before applying changes to production configuratio
 
 Documentation: Maintain up-to-date documentation for server configurations to help administrators easily identify and fix issues.
 
-## Tasks to Address the Issue
+### Tasks to Address the Issue
 
 Implement automated configuration testing in the deployment pipeline.
 Enhance documentation on server configurations and maintenance procedures.
