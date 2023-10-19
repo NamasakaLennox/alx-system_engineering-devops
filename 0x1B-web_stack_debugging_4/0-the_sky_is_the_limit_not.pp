@@ -2,12 +2,10 @@
 
 # increase the limit for open files
 exec { 'increase limit for open files':
-  command => 'sed -i "s/15/2000/" /etc/default/nginx',
-  path    => '/usr/bin/env'
+  command => '/bin/sed -i "s/15/4096/" /etc/default/nginx',
 }
 
 # restart nginx
 exec { 'restart nginx':
-  command => 'service nginx restart',
-  path    => '/usr/bin/env'
+  command => '/usr/sbin/service nginx restart',
 }
